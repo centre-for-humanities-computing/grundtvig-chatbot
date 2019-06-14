@@ -12,7 +12,7 @@ from keras.layers.core import Reshape, Flatten
 
 from glob import iglob
 import numpy as np
-import random, argparse, sys, os, io
+import random, argparse, sys, os, io, json
 
 file_path = "/output"
 directory = os.path.dirname(os.path.abspath(__file__)) + file_path
@@ -44,6 +44,12 @@ chars = sorted(list(set(text)))
 print('total chars:', len(chars))
 char_indices = dict((c, i) for i, c in enumerate(chars))
 indices_char = dict((i, c) for i, c in enumerate(chars))
+
+with open('tokens.json', 'w+') as outfile:
+    a = json.dumps(chars)
+    outfile.write(a)
+    print(a)
+
 
 maxlen = 40
 step = 3
